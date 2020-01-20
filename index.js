@@ -20,13 +20,17 @@ const trog = [
 trog.forEach(name =>
   API.MWstats(name, API.platforms.psn)
     .then(output => {
-      const properties = output.lifetime.all.properties;
+      const ltProperties = output.lifetime.all.properties;
+      const weeklyProperties = output.weekly.all.properties;
+
       console.log(output);
       createMainCards(
         output.username,
-        properties.suicides,
-        properties.timePlayedTotal,
-        properties.kdRatio
+        ltProperties.kills,
+        ltProperties.suicides,
+        ltProperties.timePlayedTotal,
+        ltProperties.kdRatio,
+        weeklyProperties.kdRatio
       );
     })
     .catch(err => {
@@ -34,29 +38,57 @@ trog.forEach(name =>
     })
 );
 
-const createMainCards = (nameIP, suicideStat, totalTime, kDStat) => {
+const createMainCards = (
+  nameIP,
+  kills,
+  suicideStat,
+  totalTime,
+  kDStat,
+  weeklykDStat
+) => {
   const card = document.createElement("div");
   card.classList.add("card");
 
-  const names = document.createElement("h4");
+  const names = document.createElement("h3");
   names.innerHTML = nameIP;
+  names.classList.add("name");
   card.appendChild(names);
 
-  const suicides = document.createElement("h5");
-  suicides.innerHTML = suicideStat;
-  card.appendChild(suicides);
+  card.appendChild(createStatRow("Weekly K/D: ", weeklykDStat.toFixed(2)));
 
-  const allTime = document.createElement("h5");
-  allTime.innerHTML = moment
-    .duration(totalTime, "seconds")
-    .format("h [h] m [m] s [s]");
-  card.appendChild(allTime);
+  card.appendChild(createStatRow("Overall K/D:", kDStat.toFixed(2)));
 
-  const kD = document.createElement("h5");
-  kD.innerHTML = kDStat;
-  card.appendChild(kD);
+  card.appendChild(createStatRow("Kills", kills));
+
+  card.appendChild(createStatRow("Suicides: ", suicideStat));
+
+  card.appendChild(
+    createStatRow(
+      "Total played time: ",
+      moment.duration(totalTime, "seconds").format("h [h] m [m] s [s]")
+    )
+  );
 
   main.appendChild(card);
+};
+
+const createStatRow = (labelName, statNumber) => {
+  const row = document.createElement("div");
+  row.classList.add("row");
+
+  const label = document.createElement("h5");
+  label.classList.add("label");
+  label.innerHTML = labelName;
+  row.appendChild(label);
+
+  const stat = document.createElement("h4");
+  stat.classList.add("stat");
+  stat.innerHTML = statNumber;
+  row.appendChild(stat);
+  console.log(stat);
+
+  console.log("row: ", row);
+  return row;
 };
 
 console.log("cica");

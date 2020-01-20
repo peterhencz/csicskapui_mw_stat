@@ -9288,30 +9288,44 @@ body.appendChild(main);
 var trog = ["TROG-sinka_sonka", "TROG-Peetunia", "TROG-kiralymarci", "PureDani84", "bandaniel85", "ZagiPeti"];
 trog.forEach(function (name) {
   return API.MWstats(name, API.platforms.psn).then(function (output) {
-    var properties = output.lifetime.all.properties;
+    var ltProperties = output.lifetime.all.properties;
+    var weeklyProperties = output.weekly.all.properties;
     console.log(output);
-    createMainCards(output.username, properties.suicides, properties.timePlayedTotal, properties.kdRatio);
+    createMainCards(output.username, ltProperties.kills, ltProperties.suicides, ltProperties.timePlayedTotal, ltProperties.kdRatio, weeklyProperties.kdRatio);
   }).catch(function (err) {
     console.log(err);
   });
 });
 
-var createMainCards = function createMainCards(nameIP, suicideStat, totalTime, kDStat) {
+var createMainCards = function createMainCards(nameIP, kills, suicideStat, totalTime, kDStat, weeklykDStat) {
   var card = document.createElement("div");
   card.classList.add("card");
-  var names = document.createElement("h4");
+  var names = document.createElement("h3");
   names.innerHTML = nameIP;
+  names.classList.add("name");
   card.appendChild(names);
-  var suicides = document.createElement("h5");
-  suicides.innerHTML = suicideStat;
-  card.appendChild(suicides);
-  var allTime = document.createElement("h5");
-  allTime.innerHTML = moment.duration(totalTime, "seconds").format("h [h] m [m] s [s]");
-  card.appendChild(allTime);
-  var kD = document.createElement("h5");
-  kD.innerHTML = kDStat;
-  card.appendChild(kD);
+  card.appendChild(createStatRow("Weekly K/D: ", weeklykDStat.toFixed(2)));
+  card.appendChild(createStatRow("Overall K/D:", kDStat.toFixed(2)));
+  card.appendChild(createStatRow("Kills", kills));
+  card.appendChild(createStatRow("Suicides: ", suicideStat));
+  card.appendChild(createStatRow("Total played time: ", moment.duration(totalTime, "seconds").format("h [h] m [m] s [s]")));
   main.appendChild(card);
+};
+
+var createStatRow = function createStatRow(labelName, statNumber) {
+  var row = document.createElement("div");
+  row.classList.add("row");
+  var label = document.createElement("h5");
+  label.classList.add("label");
+  label.innerHTML = labelName;
+  row.appendChild(label);
+  var stat = document.createElement("h4");
+  stat.classList.add("stat");
+  stat.innerHTML = statNumber;
+  row.appendChild(stat);
+  console.log(stat);
+  console.log("row: ", row);
+  return row;
 };
 
 console.log("cica");

@@ -1,18 +1,81 @@
+@import url("https://fonts.googleapis.com/css?family=Quicksand&display=swap");
+
+* {
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  font-family: "Quicksand", sans-serif;
+}
+
 body {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  background: -webkit-linear-gradient(
+    115deg,
+    rgb(52, 51, 56),
+    rgb(113, 109, 108)
+  );
+  background: linear-gradient(115deg, rgb(52, 51, 56), rgb(113, 109, 108));
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.header {
+  text-align: center;
+  padding: 1em;
+}
+
+.header h1 {
+  font-size: 3em;
+}
+
+.header h2 {
+  font-size: 1.5em;
 }
 
 .main {
   display: flex;
-  flex-direction: row;
+  width: 100%;
+  flex-flow: row wrap;
+  justify-content: center;
 }
+
 .card {
-  border: 1px solid tomato;
+  margin: 12px;
+  padding: 12px;
+  border-radius: 4px;
   width: 25%;
-  height: 400px;
+  height: auto;
+  background-color: #111d2bb3;
+}
+
+.row {
+  margin: 6px 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.name {
+  font-size: 1.5em;
+  margin: 12px;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+h5 {
+  color: #d9dad5;
+}
+
+.stat {
+  font-size: 1.25em;
+  color: #c85945;
 }
 
 
