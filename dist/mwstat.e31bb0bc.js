@@ -9291,15 +9291,19 @@ trog.forEach(function (name) {
     var ltProperties = output.lifetime.all.properties;
     var weeklyProperties = output.weekly.all.properties;
     console.log(output);
-    createMainCards(output.username, ltProperties.kills, ltProperties.suicides, ltProperties.timePlayedTotal, ltProperties.kdRatio, weeklyProperties.kdRatio);
+    createMainCards(output.username, output.level, ltProperties.kills, ltProperties.deaths, ltProperties.suicides, ltProperties.timePlayedTotal, ltProperties.kdRatio, weeklyProperties.kdRatio);
   }).catch(function (err) {
     console.log(err);
   });
 });
 
-var createMainCards = function createMainCards(nameIP, kills, suicideStat, totalTime, kDStat, weeklykDStat) {
+var createMainCards = function createMainCards(nameIP, lvlStat, kills, deaths, suicideStat, totalTime, kDStat, weeklykDStat) {
   var card = document.createElement("div");
   card.classList.add("card");
+  var lvl = document.createElement("h3");
+  lvl.innerHTML = "lvl " + lvlStat;
+  lvl.classList.add("lvl");
+  card.appendChild(lvl);
   var names = document.createElement("h3");
   names.innerHTML = nameIP;
   names.classList.add("name");
@@ -9307,8 +9311,9 @@ var createMainCards = function createMainCards(nameIP, kills, suicideStat, total
   card.appendChild(createStatRow("Weekly K/D: ", weeklykDStat.toFixed(2)));
   card.appendChild(createStatRow("Overall K/D:", kDStat.toFixed(2)));
   card.appendChild(createStatRow("Kills", kills));
+  card.appendChild(createStatRow("Deaths", deaths));
   card.appendChild(createStatRow("Suicides: ", suicideStat));
-  card.appendChild(createStatRow("Total played time: ", moment.duration(totalTime, "seconds").format("h [h] m [m] s [s]")));
+  card.appendChild(createStatRow("Total played time: ", moment.duration(totalTime, "seconds").format("h[h] m[m] s[s]")));
   main.appendChild(card);
 };
 

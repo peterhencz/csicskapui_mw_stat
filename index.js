@@ -26,7 +26,9 @@ trog.forEach(name =>
       console.log(output);
       createMainCards(
         output.username,
+        output.level,
         ltProperties.kills,
+        ltProperties.deaths,
         ltProperties.suicides,
         ltProperties.timePlayedTotal,
         ltProperties.kdRatio,
@@ -40,7 +42,9 @@ trog.forEach(name =>
 
 const createMainCards = (
   nameIP,
+  lvlStat,
   kills,
+  deaths,
   suicideStat,
   totalTime,
   kDStat,
@@ -48,6 +52,11 @@ const createMainCards = (
 ) => {
   const card = document.createElement("div");
   card.classList.add("card");
+
+  const lvl = document.createElement("h3");
+  lvl.innerHTML = "lvl " + lvlStat;
+  lvl.classList.add("lvl");
+  card.appendChild(lvl);
 
   const names = document.createElement("h3");
   names.innerHTML = nameIP;
@@ -60,12 +69,14 @@ const createMainCards = (
 
   card.appendChild(createStatRow("Kills", kills));
 
+  card.appendChild(createStatRow("Deaths", deaths));
+
   card.appendChild(createStatRow("Suicides: ", suicideStat));
 
   card.appendChild(
     createStatRow(
       "Total played time: ",
-      moment.duration(totalTime, "seconds").format("h [h] m [m] s [s]")
+      moment.duration(totalTime, "seconds").format("h[h] m[m] s[s]")
     )
   );
 
