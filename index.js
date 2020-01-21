@@ -1,6 +1,8 @@
 "use strict";
+
 const API = require("call-of-duty-api");
 var moment = require("moment");
+
 var momentDurationFormatSetup = require("moment-duration-format");
 const body = document.body;
 
@@ -73,6 +75,10 @@ const createMainCards = (
   lvl.classList.add("lvl");
   card.appendChild(lvl);
 
+  const showMore = document.createElement("div");
+  showMore.classList.add("show-more-button");
+  card.appendChild(showMore);
+
   const names = document.createElement("h3");
   names.innerHTML = nameIP;
   names.classList.add("name");
@@ -80,17 +86,17 @@ const createMainCards = (
 
   card.appendChild(createStatRow("Weekly K/D: ", weeklykDStat.toFixed(2)));
 
-  card.appendChild(createStatRow("Overall K/D:", kDStat.toFixed(2)));
+  card.appendChild(createStatRow("Overall K/D: ", kDStat.toFixed(2)));
 
-  card.appendChild(createStatRow("Best K/D", bestKDStat));
+  card.appendChild(createStatRow("Best K/D: ", bestKDStat));
 
   card.appendChild(
-    createStatRow("Score/minute", scorePerMinuteStat.toFixed(2))
+    createStatRow("Score/minute: ", scorePerMinuteStat.toFixed(2))
   );
 
-  card.appendChild(createStatRow("Kills", kills));
+  card.appendChild(createStatRow("Kills: ", kills));
 
-  card.appendChild(createStatRow("Deaths", deaths));
+  card.appendChild(createStatRow("Deaths: ", deaths));
 
   card.appendChild(createStatRow("W/L: ", wlRatioStat.toFixed(2)));
   card.appendChild(createStatRow("Total shots: ", totalShotsStat));

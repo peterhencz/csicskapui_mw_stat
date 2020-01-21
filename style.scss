@@ -1,9 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Inconsolata&display=swap");
 
 $break-large: 1200px;
+$break-medium: 800px;
 
 * {
-  font-size: 16px;
+  font-size: 14px;
   margin: 0;
   padding: 0;
   outline: none;
@@ -16,23 +17,41 @@ body {
   justify-content: center;
   align-items: center;
 
-  background: linear-gradient(145deg, #20282e, #1b2127);
+  background: -webkit-linear-gradient(
+    -180deg,
+    rgb(64, 92, 104),
+    rgb(136, 128, 115)
+  );
+  background: linear-gradient(-180deg, rgb(64, 92, 104), rgb(136, 128, 115));
 
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
 
 .header {
-  text-align: center;
-  padding: 3em 1em 5em;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3.5em;
+  text-align: left;
+  margin-bottom: 3em;
+  padding-left: 2em;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(145deg, #20282e, #1b2127);
+  z-index: 3;
 }
 
 .header h1 {
-  font-size: 3em;
+  font-size: 1.5em;
+  color: rgb(136, 128, 115);
 }
 
 .header h2 {
-  font-size: 1.5em;
+  margin: 0 10px;
+  color: #c85945;
+  font-size: 1.25em;
 }
 
 .main {
@@ -47,12 +66,20 @@ body {
   margin: 2em;
   padding: 0.75em;
   border-radius: 8px;
-  width: 25%;
+  width: 40%;
   height: auto;
-  background: linear-gradient(145deg, #20282e, #1b2127);
-  box-shadow: 5px 5px 15px #151a1e, -5px -5px 15px #273038;
-  @media screen and (max-width: $break-large) {
-    width: 40%;
+  background: linear-gradient(145deg, #20282e9b, #1b2127ee);
+  // box-shadow: 5px 5px 15px #151a1e, -5px -5px 15px #273038;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
+    0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
+    0 16px 16px rgba(0, 0, 0, 0.12);
+  @media screen and (max-width: $break-medium) {
+    width: 90%;
+    margin: 1em 1em;
+    padding: 1em 0.5em;
+  }
+  @media screen and (min-width: $break-large) {
+    width: 25%;
   }
 }
 
@@ -66,7 +93,7 @@ body {
 
 .name {
   font-size: 1.5em;
-  margin: 8px 20px 12px;
+  margin: 0px 20px 12px;
   text-align: center;
   text-transform: uppercase;
 }
@@ -91,4 +118,12 @@ h5 {
 
 .lvl {
   opacity: 0.6;
+}
+
+.show-more-button {
+  width: 1em;
+  height: 1em;
+}
+.chart-container {
+  width: 50%;
 }
