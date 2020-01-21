@@ -22,7 +22,7 @@ body {
     rgb(64, 92, 104),
     rgb(136, 128, 115)
   );
-  background: rgb(136, 128, 115);
+  background: #b0b0b0;
 
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -65,11 +65,11 @@ body {
 .card {
   margin: 2em;
   padding: 0.75em;
-  border-radius: 8px;
+  border-radius: 4px;
   width: 40%;
   height: auto;
   background: linear-gradient(145deg, #20282e9b, #1b2127ee);
-  // box-shadow: 5px 5px 15px #151a1e, -5px -5px 15px #273038;
+  padding-bottom: 1.5em;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
     0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
     0 16px 16px rgba(0, 0, 0, 0.12);
