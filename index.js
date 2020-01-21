@@ -85,26 +85,18 @@ const createMainCards = (
   card.appendChild(names);
 
   card.appendChild(createStatRow("Weekly K/D: ", weeklykDStat.toFixed(2)));
-
   card.appendChild(createStatRow("Overall K/D: ", kDStat.toFixed(2)));
-
   card.appendChild(createStatRow("Best K/D: ", bestKDStat));
-
   card.appendChild(
     createStatRow("Score/minute: ", scorePerMinuteStat.toFixed(2))
   );
-
   card.appendChild(createStatRow("Kills: ", kills));
-
   card.appendChild(createStatRow("Deaths: ", deaths));
-
   card.appendChild(createStatRow("W/L: ", wlRatioStat.toFixed(2)));
   card.appendChild(createStatRow("Total shots: ", totalShotsStat));
   card.appendChild(createStatRow("Headshots: ", headshotsStat));
   card.appendChild(createStatRow("Kill streak: ", recordKillStreakStat));
-
   card.appendChild(createStatRow("Suicides: ", suicideStat));
-
   card.appendChild(createStatRow("Games played: ", gamesPlayedStat));
   card.appendChild(
     createStatRow(
@@ -129,6 +121,7 @@ const createStatRow = (labelName, statNumber) => {
   stat.classList.add("stat");
   stat.innerHTML = statNumber;
   row.appendChild(stat);
+
   return row;
 };
 
