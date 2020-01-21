@@ -104,7 +104,6 @@ const createMainCards = (
       moment.duration(totalTime, "seconds").format("h[h] m[m] s[s]")
     )
   );
-
   main.appendChild(card);
 };
 
