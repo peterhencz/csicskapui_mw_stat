@@ -14,5 +14,9 @@
     "moment": "^2.24.0",
     "moment-duration-format": "^2.3.2",
     "requirejs": "^2.3.6"
+  },
+  "devDependencies": {
+    "cssnano": "^4.1.10",
+    "sass": "^1.25.0"
   }
 }

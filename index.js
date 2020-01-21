@@ -22,17 +22,25 @@ trog.forEach(name =>
     .then(output => {
       const ltProperties = output.lifetime.all.properties;
       const weeklyProperties = output.weekly.all.properties;
+      const acc = output.lifetime.accoladeData;
 
       console.log(output);
       createMainCards(
         output.username,
         output.level,
+        weeklyProperties.kdRatio,
+        ltProperties.kdRatio,
+        ltProperties.bestKD,
+        ltProperties.scorePerMinute,
         ltProperties.kills,
         ltProperties.deaths,
+        ltProperties.winLossRatio,
+        ltProperties.totalShots,
+        ltProperties.headshots,
+        ltProperties.recordKillStreak,
         ltProperties.suicides,
-        ltProperties.timePlayedTotal,
-        ltProperties.kdRatio,
-        weeklyProperties.kdRatio
+        ltProperties.gamesPlayed,
+        ltProperties.timePlayedTotal
       );
     })
     .catch(err => {
@@ -43,12 +51,19 @@ trog.forEach(name =>
 const createMainCards = (
   nameIP,
   lvlStat,
+  weeklykDStat,
+  kDStat,
+  bestKDStat,
+  scorePerMinuteStat,
   kills,
   deaths,
+  wlRatioStat,
+  totalShotsStat,
+  headshotsStat,
+  recordKillStreakStat,
   suicideStat,
-  totalTime,
-  kDStat,
-  weeklykDStat
+  gamesPlayedStat,
+  totalTime
 ) => {
   const card = document.createElement("div");
   card.classList.add("card");
@@ -67,12 +82,24 @@ const createMainCards = (
 
   card.appendChild(createStatRow("Overall K/D:", kDStat.toFixed(2)));
 
+  card.appendChild(createStatRow("Best K/D", bestKDStat));
+
+  card.appendChild(
+    createStatRow("Score/minute", scorePerMinuteStat.toFixed(2))
+  );
+
   card.appendChild(createStatRow("Kills", kills));
 
   card.appendChild(createStatRow("Deaths", deaths));
 
+  card.appendChild(createStatRow("W/L: ", wlRatioStat.toFixed(2)));
+  card.appendChild(createStatRow("Total shots: ", totalShotsStat));
+  card.appendChild(createStatRow("Headshots: ", headshotsStat));
+  card.appendChild(createStatRow("Kill streak: ", recordKillStreakStat));
+
   card.appendChild(createStatRow("Suicides: ", suicideStat));
 
+  card.appendChild(createStatRow("Games played: ", gamesPlayedStat));
   card.appendChild(
     createStatRow(
       "Total played time: ",
@@ -96,9 +123,6 @@ const createStatRow = (labelName, statNumber) => {
   stat.classList.add("stat");
   stat.innerHTML = statNumber;
   row.appendChild(stat);
-  console.log(stat);
-
-  console.log("row: ", row);
   return row;
 };
 

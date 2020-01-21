@@ -9290,14 +9290,15 @@ trog.forEach(function (name) {
   return API.MWstats(name, API.platforms.psn).then(function (output) {
     var ltProperties = output.lifetime.all.properties;
     var weeklyProperties = output.weekly.all.properties;
+    var acc = output.lifetime.accoladeData;
     console.log(output);
-    createMainCards(output.username, output.level, ltProperties.kills, ltProperties.deaths, ltProperties.suicides, ltProperties.timePlayedTotal, ltProperties.kdRatio, weeklyProperties.kdRatio);
+    createMainCards(output.username, output.level, weeklyProperties.kdRatio, ltProperties.kdRatio, ltProperties.bestKD, ltProperties.scorePerMinute, ltProperties.kills, ltProperties.deaths, ltProperties.winLossRatio, ltProperties.totalShots, ltProperties.headshots, ltProperties.recordKillStreak, ltProperties.suicides, ltProperties.gamesPlayed, ltProperties.timePlayedTotal);
   }).catch(function (err) {
     console.log(err);
   });
 });
 
-var createMainCards = function createMainCards(nameIP, lvlStat, kills, deaths, suicideStat, totalTime, kDStat, weeklykDStat) {
+var createMainCards = function createMainCards(nameIP, lvlStat, weeklykDStat, kDStat, bestKDStat, scorePerMinuteStat, kills, deaths, wlRatioStat, totalShotsStat, headshotsStat, recordKillStreakStat, suicideStat, gamesPlayedStat, totalTime) {
   var card = document.createElement("div");
   card.classList.add("card");
   var lvl = document.createElement("h3");
@@ -9310,9 +9311,16 @@ var createMainCards = function createMainCards(nameIP, lvlStat, kills, deaths, s
   card.appendChild(names);
   card.appendChild(createStatRow("Weekly K/D: ", weeklykDStat.toFixed(2)));
   card.appendChild(createStatRow("Overall K/D:", kDStat.toFixed(2)));
+  card.appendChild(createStatRow("Best K/D", bestKDStat));
+  card.appendChild(createStatRow("Score/minute", scorePerMinuteStat.toFixed(2)));
   card.appendChild(createStatRow("Kills", kills));
   card.appendChild(createStatRow("Deaths", deaths));
+  card.appendChild(createStatRow("W/L: ", wlRatioStat.toFixed(2)));
+  card.appendChild(createStatRow("Total shots: ", totalShotsStat));
+  card.appendChild(createStatRow("Headshots: ", headshotsStat));
+  card.appendChild(createStatRow("Kill streak: ", recordKillStreakStat));
   card.appendChild(createStatRow("Suicides: ", suicideStat));
+  card.appendChild(createStatRow("Games played: ", gamesPlayedStat));
   card.appendChild(createStatRow("Total played time: ", moment.duration(totalTime, "seconds").format("h[h] m[m] s[s]")));
   main.appendChild(card);
 };
@@ -9328,8 +9336,6 @@ var createStatRow = function createStatRow(labelName, statNumber) {
   stat.classList.add("stat");
   stat.innerHTML = statNumber;
   row.appendChild(stat);
-  console.log(stat);
-  console.log("row: ", row);
   return row;
 };
 
@@ -9362,7 +9368,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64184" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60308" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

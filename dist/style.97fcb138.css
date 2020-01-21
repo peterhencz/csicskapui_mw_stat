@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css?family=Inconsolata&display=swap");
-
 * {
   font-size: 16px;
   margin: 0;
@@ -13,9 +12,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   background: linear-gradient(145deg, #20282e, #1b2127);
-
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
@@ -50,6 +47,11 @@ body {
   background: linear-gradient(145deg, #20282e, #1b2127);
   box-shadow: 5px 5px 15px #151a1e, -5px -5px 15px #273038;
 }
+@media screen and (max-width: 1200px) {
+  .card {
+    width: 40%;
+  }
+}
 
 .row {
   margin: 6px 12px;
@@ -77,6 +79,7 @@ h5 {
   width: 48%;
   text-align: right;
 }
+
 .stat {
   width: 48%;
   text-align: left;
@@ -87,3 +90,5 @@ h5 {
 .lvl {
   opacity: 0.6;
 }
+
+/*# sourceMappingURL=/style.97fcb138.css.map */
