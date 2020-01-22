@@ -27,26 +27,47 @@ trog.forEach(name =>
       const acc = output.lifetime.accoladeData;
 
       console.log(output);
-      createMainCards(
-        output.username,
-        output.level,
-        weeklyProperties.kdRatio,
-        ltProperties.kdRatio,
-        ltProperties.bestKD,
-        ltProperties.scorePerMinute,
-        ltProperties.kills,
-        ltProperties.deaths,
-        ltProperties.winLossRatio,
-        ltProperties.totalShots,
-        ltProperties.headshots,
-        ltProperties.recordKillStreak,
-        ltProperties.suicides,
-        ltProperties.gamesPlayed,
-        ltProperties.timePlayedTotal
-      );
+      if (weeklyProperties !== null) {
+        createMainCards(
+          output.username,
+          output.level,
+          weeklyProperties.kdRatio,
+          ltProperties.kdRatio,
+          ltProperties.bestKD,
+          ltProperties.scorePerMinute,
+          ltProperties.kills,
+          ltProperties.deaths,
+          ltProperties.winLossRatio,
+          ltProperties.totalShots,
+          ltProperties.headshots,
+          ltProperties.recordKillStreak,
+          ltProperties.suicides,
+          ltProperties.gamesPlayed,
+          ltProperties.timePlayedTotal
+        );
+      } else {
+        createMainCards(
+          output.username,
+          output.level,
+          0,
+          ltProperties.kdRatio,
+          ltProperties.bestKD,
+          ltProperties.scorePerMinute,
+          ltProperties.kills,
+          ltProperties.deaths,
+          ltProperties.winLossRatio,
+          ltProperties.totalShots,
+          ltProperties.headshots,
+          ltProperties.recordKillStreak,
+          ltProperties.suicides,
+          ltProperties.gamesPlayed,
+          ltProperties.timePlayedTotal
+        );
+      }
     })
+
     .catch(err => {
-      console.log(err);
+      console.log("kiscica> ", err);
     })
 );
 
@@ -75,9 +96,11 @@ const createMainCards = (
   lvl.classList.add("lvl");
   card.appendChild(lvl);
 
-  const showMore = document.createElement("div");
-  showMore.classList.add("show-more-button");
-  card.appendChild(showMore);
+  const openButton = document.createElement("button");
+  openButton.classList.add("open-button");
+  openButton.innerHTML = "Show more...";
+  openButton.onclick = showFullStat;
+  card.appendChild(openButton);
 
   const names = document.createElement("h3");
   names.innerHTML = nameIP;
@@ -122,6 +145,10 @@ const createStatRow = (labelName, statNumber) => {
   row.appendChild(stat);
 
   return row;
+};
+
+const showFullStat = nameIP => {
+  console.log(nameIP);
 };
 
 console.log("cica");
