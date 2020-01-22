@@ -96,11 +96,11 @@ const createMainCards = (
   lvl.classList.add("lvl");
   card.appendChild(lvl);
 
-  const openButton = document.createElement("button");
-  openButton.classList.add("open-button");
-  openButton.innerHTML = "Show more...";
-  openButton.onclick = showFullStat;
-  card.appendChild(openButton);
+  // const openButton = document.createElement("button");
+  // openButton.classList.add("open-button");
+  // openButton.innerHTML = "Show more...";
+  // openButton.onclick = showFullStat;
+  // card.appendChild(openButton);
 
   const names = document.createElement("h3");
   names.innerHTML = nameIP;
