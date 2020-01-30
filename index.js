@@ -15,7 +15,7 @@ const trog = [
   "TROG-Peetunia",
   "TROG-kiralymarci",
   "PureDani84",
-  "bandaniel85",
+  "KalapUr83",
   "ZagiPeti",
 ];
 
@@ -67,7 +67,7 @@ trog.forEach(name =>
     })
 
     .catch(err => {
-      console.log("kiscica> ", err);
+      console.log("kiscica: ", err);
     })
 );
 
