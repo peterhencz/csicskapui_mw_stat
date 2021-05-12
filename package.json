@@ -12,7 +12,7 @@
     "PSNjs": "^0.1.2",
     "browserify": "^16.5.0",
     "call-of-duty-api": "^1.0.23",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
     "hyper-one-dark": "^1.0.0",
